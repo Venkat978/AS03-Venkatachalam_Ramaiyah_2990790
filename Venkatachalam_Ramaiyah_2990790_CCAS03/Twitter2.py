@@ -30,6 +30,7 @@ class Name(webapp2.RequestHandler):
         template_values = {'url' : url,'url_string' : url_string,'sol' : sol,'twitter' : twitter}
         template = JINJA_ENVIRONMENT.get_template('Twitter2.html')
         self.response.write(template.render(template_values))
+        
 class Update(webapp2.RequestHandler):
     def get(self):
         email = users.get_current_user().email()
