@@ -1,0 +1,86 @@
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>TWITTER APPLICATION</title>
+    <style type="text/css">
+    table {
+      font-family: Verdana, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    thead {
+      background: #ccc01a;
+      color: #fff;
+    }
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 6px;
+    }
+    tr:hover:nth-child(even) {
+      background-color: #EEEEEE;
+    }
+    body {
+      font-family: "Verdana", Times, serif;
+    }
+    a:visited {
+      color: blue;
+    }
+    a:hover {
+      color: green;
+    }
+</style>
+  </head>
+  <body>
+	<h1 style="text-align:center;"> AS03:Building Twitter Application</h1>
+	<h3 style="text-align:right;"> Please {{ url_string }} <a href='{{ url }}'>here</a></h3>
+      {% if user %}
+      WELCOME <a href="/Update/{{ twitter.UserName }}">{{ twitter.UserName }}</br>
+        <br>Personal Information<br/>
+        {{ twitter.PersonalInfo }}<br/>
+        <h3 style="text-align:left;"> <a href="/Update">Update Personal Information</a>
+
+        <br/><h3 style="text-align:right;margin-top: -50px;margin-right: 50px">Followers:{{ followerslist }}<br/>
+        <br/><h3 style="text-align:right;margin-top: -40px;margin-right: 50px;">Following:{{ followinglist }}<br/>
+        <br/><h2 style="text-align:left;"">Post Tweet:<br/>
+          <form method='post' action='/Update'>
+          <input style="height:150px;width:600px;font-size:10pt;" type='text' name='Tweet' required='True' maxlength="250"/>
+          <br/><input type='submit' name='button' value='Post'/>
+          </form>
+        <br/>
+        <h3> Search User:
+          <form method='get' action='/'>
+          <input type='text' name='usersearch'/>
+          <input type='submit' name='button' value='Search'/>
+          </form>
+          {% if q1==1 %}
+          <a href="/Bio/{{ finaluser }}">{{ finaluser }}</a>
+          {% else %}
+          {% endif %}
+            <h3>Search Tweet:
+          <form method='get' action='/'>
+            <input type='text' name='tweetsearch'/>
+          <input type='submit' name='button' value='Tweet Search'/>
+        </form>
+          <h3>Result For Tweet Searched:
+          <br/>
+            {% if q2 > 0 %}
+            {% for a in finaltweet %}
+            {{ a }}
+            <br/>
+            {% endfor %}
+          <br/>
+
+            {% else %}
+            {% endif %}
+            <br/>TIMELINE:<br/>
+
+          <br/>
+            {% for a in st %}
+          <br/>
+            {{ a }}
+              {% endfor %}
+              {% else %}
+              {% endif %}
+          </body>
+</html>
