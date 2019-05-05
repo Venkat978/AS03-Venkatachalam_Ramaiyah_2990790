@@ -22,8 +22,14 @@ class Name(webapp2.RequestHandler):
             twitter.PersonalInfo=PersonalInfo
             twitter.put()
             self.redirect('/')
+        else:
+            url = users.create_login_url(self.request.uri)
+            url_string = 'login'
+            sol=sol = Twitter.query().fetch()
+            username=self.request.get('usersearch')
+        template_values = {'url' : url,'url_string' : url_string,'q1' : q1,'twitter' : twitter}
         template = JINJA_ENVIRONMENT.get_template('Twitter2.html')
-
+        self.response.write(template.render(template_values))
 class Update(webapp2.RequestHandler):
     def get(self):
         email = users.get_current_user().email()
